@@ -1,0 +1,27 @@
+{
+  "name": "bit-of-trivia",
+  "version": "1.0.0",
+  "description": "A simple react-app for saving and displaying pieces of trivia.",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_PATH=. webpack-dev-server"
+  },
+  "keywords": [
+    "trivia",
+    "react",
+    "typescript"
+  ],
+  "author": "Julius Rajala <juliusrajala@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^4.3.0",
+    "typescript": "^2.8.3",
+    "webpack": "^4.8.3",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "immutable": "^3.8.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}
