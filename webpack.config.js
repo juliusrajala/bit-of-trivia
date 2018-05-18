@@ -10,6 +10,12 @@ const config = {
     rules: [
       { test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ },
     ]
+  },
+  resolve: {
+    alias: {
+      'src': path.resolve(__dirname, './src/')
+    },
+    extensions: ['.tsx', '.ts', '.js'],
   }
 };
 
