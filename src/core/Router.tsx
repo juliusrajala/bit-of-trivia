@@ -21,6 +21,10 @@ const routes: Routes = Map({
 
 export default (window): any => {
   const { location } = window;
-  const currentRoute = routes.get('/new');
-  return <currentRoute.component />;
+  const currentRoute = window.location;
+
+  if (!routes.has(currentRoute)) return <Quote />;
+
+  const route = routes.get(currentRoute);
+  return <route.component />;
 }
