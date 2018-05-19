@@ -1,9 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import Router from 'src/core/Router';
 
-const App = () => {
+console.log('Mounting App');
 
-}
+const App = () => (
+  <div>
+    <Router/>
+  </div>
+);
 
 ReactDOM.render(
   <App />,

@@ -4,8 +4,9 @@
   "description": "A simple react-app for saving and displaying pieces of trivia.",
   "main": "index.js",
   "scripts": {
-    "test": "webpack-dev-server --mode development",
-    "build": "webpack --model production"
+    "dev": "npm run build-static && webpack-dev-server --mode development",
+    "build-static": "bash -c \"cp public/* dist/\"",
+    "build": "webpack --mode production"
   },
   "keywords": [
     "trivia",
@@ -15,11 +16,12 @@
   "author": "Julius Rajala <juliusrajala@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "ts-loader": "^4.3.0",
+    "file-loader": "1.1.11",
+    "ts-loader": "4.3.0",
     "typescript": "^2.8.3",
-    "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.3",
-    "webpack-dev-server": "^3.1.4"
+    "webpack": "4.8.3",
+    "webpack-cli": "2.1.3",
+    "webpack-dev-server": "3.1.4"
   },
   "dependencies": {
     "immutable": "^3.8.2",
