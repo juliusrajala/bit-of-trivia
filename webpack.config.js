@@ -6,6 +6,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -22,6 +23,7 @@ const config = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     hot: true,
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

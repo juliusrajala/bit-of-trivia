@@ -2,6 +2,7 @@ import { Map } from 'immutable';
 import * as React from 'react';
 import Quote from 'src/ui/views/QuoteView';
 import Create from 'src/ui/views/CreateView';
+import NotFound from 'src/ui/views/404View';
 
 type Route = {
   loader?: () => null;
@@ -18,13 +19,30 @@ const routes: Routes = Map({
     component: Create,
   }
 });
+type RouterState = { url: string };
+const initialState: RouterState = { url: window.location.pathname };
 
-export default (window): any => {
-  const { location } = window;
-  const currentRoute = window.location;
+class Router extends React.Component {
+  state: RouterState = initialState;
 
-  if (!routes.has(currentRoute)) return <Quote />;
+  componentDidMount() {
+    window.addEventListener('popstate', (event) => {
+      event.preventDefault();
+      console.log(event);
+    })
+  }
 
-  const route = routes.get(currentRoute);
-  return <route.component />;
+  componentWillUnmount() {
+
+  }
+
+  render(){
+    const { url } = this.state;
+    if (!routes.has(url)) return <NotFound />;
+
+    const RouteComponent = routes.get(url).component;
+    return <RouteComponent {...this.props} />;
+  }
 }
+
+export default Router;

@@ -16,6 +16,7 @@
   "author": "Julius Rajala <juliusrajala@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@types/react": "^16.3.14",
     "file-loader": "1.1.11",
     "ts-loader": "4.3.0",
     "typescript": "^2.8.3",
@@ -24,6 +25,7 @@
     "webpack-dev-server": "3.1.4"
   },
   "dependencies": {
+    "browser-history": "^1.0.1",
     "immutable": "^3.8.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
