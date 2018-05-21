@@ -5,6 +5,8 @@ import Router from 'src/core/Router';
 import Header from 'src/ui/components/Header';
 import Footer from 'src/ui/components/Footer';
 import { Map, fromJS } from 'immutable';
+import { Trivia } from 'src/core/records';
+import { loadTrivia } from 'src/core/loaders';
 
 const Container = styled.section`
   background: #396afc;
@@ -16,19 +18,26 @@ const Container = styled.section`
   flex-direction: column;
 `;
 
-const initialState = fromJS({
-  trivia: []
-});
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-export const TriviaContext = React.createContext(initialState)
+    this.state = {
+      loadTrivia,
+      trivia: Map<string, Trivia>(),
+    }
+  }
 
-const App = () => (
-  <Container>
-    <Header />
-    <Router />
-    <Footer />
-  </Container>
-);
+  render() {
+    return(
+      <Container>
+        <Header />
+        <Router />
+        <Footer />
+      </Container>
+    );
+  } 
+}
 
 ReactDOM.render(
   <App />,
