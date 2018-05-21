@@ -26,6 +26,26 @@ export const Container = styled.section`
   justify-content: center;
 `;
 
+export const Bar = styled.div`
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  font-family: Montserrat, sans-serif;
+`;
+
+export const Navi = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const BreadText = styled.p`
+  padding: 10px;
+  line-height: 1.2;
+`;
+
 const fadeIn = keyframes`
   0% {
     box-shadow: none;
@@ -46,13 +66,14 @@ const fadeIn = keyframes`
 `;
 
 export const Card = styled.div`
+  max-width: 500px;
   padding: 20px;
   font-size: 1.1em;
   background-color: #fff;
   margin: 20px;
   color: #222;
   font-family: Merriweather, serif;
-  border-radius: 2px;
+  border-radius: 1px;
   animation: ${fadeIn} 1s ease-in-out;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 `;

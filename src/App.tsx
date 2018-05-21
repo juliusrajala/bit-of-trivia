@@ -2,7 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Router from 'src/core/Router';
-import Navigation from 'src/ui/components/Navigation';
+import Header from 'src/ui/components/Header';
+import Footer from 'src/ui/components/Footer';
+import { Map, fromJS } from 'immutable';
 
 const Container = styled.section`
   background: #396afc;
@@ -14,10 +16,17 @@ const Container = styled.section`
   flex-direction: column;
 `;
 
+const initialState = fromJS({
+  trivia: []
+});
+
+export const TriviaContext = React.createContext(initialState)
+
 const App = () => (
   <Container>
-    <Navigation />
+    <Header />
     <Router />
+    <Footer />
   </Container>
 );
 
