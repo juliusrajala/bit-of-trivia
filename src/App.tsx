@@ -6,7 +6,7 @@ import Header from 'src/ui/components/Header';
 import Footer from 'src/ui/components/Footer';
 import { Map, fromJS } from 'immutable';
 import { Trivia } from 'src/core/records';
-import { loadTrivia } from 'src/core/loaders';
+import { loadTrivia, submitTrivia } from 'src/core/effects';
 
 const Container = styled.section`
   background: #396afc;
@@ -23,8 +23,9 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      loadTrivia,
       trivia: Map<string, Trivia>(),
+      submitTrivia,
+      loadTrivia,
     }
   }
 
