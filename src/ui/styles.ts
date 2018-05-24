@@ -66,12 +66,15 @@ const fadeIn = keyframes`
 `;
 
 export const Card = styled.div`
-  max-width: 500px;
+  max-width: 100%;
+  width: 540px;
   padding: 20px;
   font-size: 1.1em;
   background-color: #fff;
   margin: 20px;
   color: #222;
+  display: flex;
+  flex-direction: column;
   font-family: Merriweather, serif;
   border-radius: 1px;
   animation: ${fadeIn} 1s ease-in-out;

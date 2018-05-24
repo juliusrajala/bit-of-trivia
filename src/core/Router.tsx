@@ -4,6 +4,7 @@ import Trivia from 'src/ui/views/TriviaView';
 import Create from 'src/ui/views/CreateView';
 import NotFound from 'src/ui/views/404View';
 import About from 'src/ui/views/AboutView';
+import { Container } from 'src/ui/styles';
 
 type Route = {
   loader?: () => any;
@@ -43,7 +44,11 @@ const Router = (props) => {
   const route = routes.get(url);
   const RouteComponent = route.component;
 
-  return <RouteComponent {...this.props} />;
+  return (
+    <Container>
+      <RouteComponent {...this.props} />;
+    </Container>
+  )
 }
 
 export default Router;

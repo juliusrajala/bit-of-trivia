@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <Bar>
       <Navi>
-        <Link href="/new">Source</Link>
+        <Link target="_blank" href="https://github.com/juliusrajala/bit-of-trivia">Source</Link>
       </Navi>
     </Bar>
   )
