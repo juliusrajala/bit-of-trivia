@@ -46,7 +46,7 @@ const Router = (props) => {
 
   return (
     <Container>
-      <RouteComponent {...this.props} />;
+      <RouteComponent {...this.props} />
     </Container>
   )
 }

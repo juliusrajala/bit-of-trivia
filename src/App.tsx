@@ -7,6 +7,7 @@ import Footer from 'src/ui/components/Footer';
 import { Map, fromJS } from 'immutable';
 import { Trivia } from 'src/core/records';
 import { loadTrivia, submitTrivia } from 'src/core/effects';
+import Drawer from 'src/ui/components/Drawer';
 
 const Container = styled.section`
   background: #396afc;
@@ -33,6 +34,7 @@ class App extends React.Component {
     return(
       <Container>
         <Header />
+        <Drawer />
         <Router />
         <Footer />
       </Container>

@@ -5,6 +5,7 @@ export const Title = styled.h1`
   font-weight: 700;
   font-size: 1.5em;
   color: #2f2f2f;
+  font-family: Montserrat, sans-serif;
 `;
 
 export const Link = styled.a`
@@ -12,10 +13,14 @@ export const Link = styled.a`
   font-weight: 600;
   text-decoration: none;
   color: #fff;
+  transition: all .2s ease-in-out;
+  :hover {
+    color: #2f2f2f;
+  }
 `;
 
 export const CardTitle = Title.extend`
-  color: #2f2f2f;
+  color: #fff;
 `;
 
 export const Container = styled.section`
@@ -24,6 +29,7 @@ export const Container = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 export const Bar = styled.div`
@@ -50,10 +56,8 @@ const fadeIn = keyframes`
   0% {
     box-shadow: none;
     opacity: 0;
-    background-color: transparent;
   }
   30% {
-    background-color: transparent;
   }
   60% {
     opacity: 1;
@@ -61,22 +65,38 @@ const fadeIn = keyframes`
     box-shadow: none;
   }
   100% {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
 `;
 
 export const Card = styled.div`
   max-width: 100%;
+  line-height: 1.2;
   width: 540px;
   padding: 20px;
-  font-size: 1.1em;
-  background-color: #fff;
-  margin: 20px;
-  color: #222;
+  font-size: 1.4em;
+  color: #fff;
   display: flex;
   flex-direction: column;
-  font-family: Merriweather, serif;
-  border-radius: 1px;
-  animation: ${fadeIn} 1s ease-in-out;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  font-family: Montserrat, sans-serif;
+`;
+
+export const AlignRight = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: justify;
+  justify-content: flex-end;
+`;
+
+export const Button = styled.button`
+  border: 2px solid #fff;
+  border-radius: 2px;
+  font-weight: 600;
+  color: #fff;
+  background-color: transparent;
+  padding: 20px;
+  font-size: 1.5rem;
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;

@@ -1,20 +1,21 @@
 import * as React from 'react';
 import { Map } from 'immutable';
-import { Card, CardTitle } from 'src/ui/styles';
+import { Card, CardTitle, Button, AlignRight } from 'src/ui/styles';
 import styled from 'styled-components';
 
 const initialState = Map({
   trivia: '',
 });
 
-const TextField = styled.textarea`
-  border: 2px solid rgba(57, 106, 252, .24);
-  min-height: 100px;
-  width: 100%;
-  padding: 10px;
-  border-radius: 1px;
+const TextField = styled.input`
+  border: 2px solid #2f2f2f;
+  padding: 20px;
+  border-radius: 3px;
   font-size: 1.2rem;
-  font-family: Merriweather, serif;
+  background-color: transparent;
+  font-family: Montserrat, sans-serif;
+  font-weight: 600;
+  margin: 10px;
 
   :focus {
     outline: none;
@@ -35,8 +36,11 @@ class CreateView extends React.Component {
   render(){
     return (
       <Card>
-        <CardTitle>Add your trivia</CardTitle>
+        <CardTitle>Write down your trivia</CardTitle>
         <TextField onChange={this.setText} />
+        <AlignRight>
+          <Button>Submit</Button>
+        </AlignRight>
       </Card>
     );
   }
