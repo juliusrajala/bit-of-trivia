@@ -1,52 +1,22 @@
-import { Map, fromJS } from 'immutable';
 import * as React from 'react';
-import Trivia from 'src/ui/views/TriviaView';
-import Create from 'src/ui/views/CreateView';
-import NotFound from 'src/ui/views/404View';
-import About from 'src/ui/views/AboutView';
 import { Container } from 'src/ui/styles';
+import { splitRouteParams } from 'src/utils/routes';
+import routes from 'src/core/routes';
+import NotFound from 'src/ui/views/404View';
 
-type Route = {
-  loader?: () => any;
-  component: any;
-};
-
-type Routes = Map<any, Route>;
-
-const routes: Routes = Map({
-  '/': {
-    component: Trivia,
-  },
-  '/new': {
-    component: Create,
-  },
-  '/about': {
-    component: About,
-  },
-  '/random': {
-    component: Trivia,
-    loader: () => Promise.resolve()
-      .then(() => fromJS({
-        trivia: 'Something something trivia',
-        id: 'ff212f',
-        author: 'Julius Rajala',
-        scores: 90
-      })),
-  }
-});
-
-type RouterState = { url: string };
-const initialState: RouterState = { url: window.location.pathname };
-
-const Router = (props) => {
+const Router = () => {
+  console.log(window.location)
   const url = window.location.pathname;
   if (!routes.has(url)) return <NotFound />;
   const route = routes.get(url);
+  const loader = route.loader;
+
   const RouteComponent = route.component;
+  const props = { loader, params: splitRouteParams(window.location.search) };
 
   return (
     <Container>
-      <RouteComponent {...this.props} />
+      <RouteComponent {...props} />
     </Container>
   )
 }

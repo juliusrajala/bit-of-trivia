@@ -4,7 +4,7 @@ export function loadTrivia(triviaId: string): Promise<Trivia> {
   return Promise.resolve()
     .then(() => new Trivia({
       trivia: 'something',
-      id: 'something',
+      id: triviaId,
       author: 'as'
     }));
 }

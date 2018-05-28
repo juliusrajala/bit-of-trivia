@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { Map } from 'immutable';
-import { Card, CardTitle, Button, AlignRight } from 'src/ui/styles';
+import produce from 'immer';
+import { Card, CardTitle, Button, AlignRight, Container } from 'src/ui/styles';
 import styled from 'styled-components';
-
-const initialState = Map({
-  trivia: '',
-});
 
 const TextField = styled.input`
   border: none;
@@ -23,13 +19,21 @@ const TextField = styled.input`
 `;
 
 class CreateView extends React.Component {
-  state = initialState;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      trivia: '',
+    }
+  }
 
   setText(event) {
     event.preventDefault();
     const targetValue = event.target.value;
-    const newState = this.state.set('trivia', targetValue);
-   
+    const newState = produce(draft => {
+      draft.trivia = targetValue;
+    });
+
     this.setState(newState);
   }
 
