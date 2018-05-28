@@ -40,10 +40,10 @@ class ConfigProvider extends React.Component<any, ConfigState> {
 
   toggleDrawer = (event) => {
     event.preventDefault();
-    console.log('Drawer toggled', this.state);
     const newState = produce(draft => {
       draft.drawerOpen = !this.state.drawerOpen;
     })
+
     this.setState(newState)
   }
 
@@ -69,6 +69,7 @@ const App: React.SFC = props => (
       ] }
     </ConfigContext.Consumer>
     <Router key="app-router" />
+    <Footer />
   </ConfigProvider>
 );
 

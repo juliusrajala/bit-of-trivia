@@ -44,6 +44,6 @@ class CreateView extends React.Component {
       </Card>
     );
   }
-} 
+}
 
 export default CreateView;

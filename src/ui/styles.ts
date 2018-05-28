@@ -15,7 +15,7 @@ export const Link = styled.a`
   color: #2f2f2f;
   transition: all .2s ease-in-out;
   :hover {
-    color: #2f2f2f;
+    color: rgba(0,0,0,0.48);
   }
 `;
 
@@ -41,7 +41,7 @@ export const Icon = styled.span`
 
   :hover {
     > * {
-      background-color: #fff;
+      background-color: rgba(0,0,0,0.48);
     }
   }
 `;
