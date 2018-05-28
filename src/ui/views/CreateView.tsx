@@ -8,11 +8,11 @@ const initialState = Map({
 });
 
 const TextField = styled.input`
-  border: 2px solid #2f2f2f;
+  border: none;
   padding: 20px;
   border-radius: 3px;
   font-size: 1.2rem;
-  background-color: transparent;
+  background-color: #fff;
   font-family: Montserrat, sans-serif;
   font-weight: 600;
   margin: 10px;

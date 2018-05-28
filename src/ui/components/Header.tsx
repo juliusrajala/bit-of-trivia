@@ -1,16 +1,21 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Link, Title, Bar, Navi } from 'src/ui/styles';
+import { Title, Bar, IconContainer, Icon, IconBar } from 'src/ui/styles';
 
-const Header = () => {
+interface HeaderProps { toggleDrawer: (Event) => void };
+
+const Header = (props: HeaderProps) => {
+  const { toggleDrawer } = props;
   return (
     <Bar>
       <Title>Bit of Trivia</Title>
-      <Navi>
-        <Link href="/new">New</Link>
-        <Link href="/random">Random</Link>
-        <Link href="/about">Motivation</Link>
-      </Navi>
+      <IconContainer>
+        <Icon onClick={event => toggleDrawer(event)}>
+          <IconBar />
+          <IconBar />
+          <IconBar />
+        </Icon>
+      </IconContainer>
     </Bar>
   )
 }

@@ -1,46 +1,76 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import produce from 'immer';
 import styled from 'styled-components';
 import Router from 'src/core/Router';
 import Header from 'src/ui/components/Header';
 import Footer from 'src/ui/components/Footer';
-import { Map, fromJS } from 'immutable';
-import { Trivia } from 'src/core/records';
-import { loadTrivia, submitTrivia } from 'src/core/effects';
 import Drawer from 'src/ui/components/Drawer';
 
 const Container = styled.section`
-  background: #396afc;
-  background: -webkit-linear-gradient(to right, #396afc, #2948ff);
-  background: linear-gradient(to right, #396afc, #2948ff);
+  background: url(assets/images/trianglify.svg) no-repeat center center fixed; 
+  background-size: cover;
   height: 100vh;
   min-height: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-class App extends React.Component {
+interface ConfigState {
+  drawerOpen: boolean;
+  authenticated: boolean;
+  toggleDrawer: (Event) => void;
+}
+
+export const ConfigContext: React.Context<ConfigState> = React.createContext({
+  drawerOpen: false,
+  authenticated: false,
+  toggleDrawer: (event: Event) => {},
+});
+
+class ConfigProvider extends React.Component<any, ConfigState> {
   constructor(props) {
     super(props);
-
     this.state = {
-      trivia: Map<string, Trivia>(),
-      submitTrivia,
-      loadTrivia,
+      drawerOpen: false,
+      authenticated: false,
+      toggleDrawer: this.toggleDrawer,
     }
   }
 
+  toggleDrawer = (event) => {
+    event.preventDefault();
+    console.log('Drawer toggled', this.state);
+    const newState = produce(draft => {
+      draft.drawerOpen = !this.state.drawerOpen;
+    })
+    this.setState(newState)
+  }
+
   render() {
-    return(
-      <Container>
-        <Header />
-        <Drawer />
-        <Router />
-        <Footer />
-      </Container>
-    );
-  } 
+    return (
+    <ConfigContext.Provider value={this.state}>
+      <Container>{this.props.children}</Container>
+    </ConfigContext.Provider>
+    )
+  }
 }
+
+const App: React.SFC = props => (
+  <ConfigProvider>
+    <ConfigContext.Consumer>
+      {(context) => [
+        <Header key="app-header" toggleDrawer={context.toggleDrawer} />,
+        <Drawer
+          key="app-drawer"
+          drawerOpen={context.drawerOpen}
+          toggleDrawer={context.toggleDrawer}
+        />,
+      ] }
+    </ConfigContext.Consumer>
+    <Router key="app-router" />
+  </ConfigProvider>
+);
 
 ReactDOM.render(
   <App />,

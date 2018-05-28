@@ -1,38 +1,71 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import {
+  Button,
+  Navi,
+  Link,
+  IconContainer,
+  Icon,
+  Divider
+} from 'src/ui/styles';
 
 const SideDrawer = styled.section`
   position: fixed;
   height: 100vh;
   max-height: 100%;
   top: 0;
-  right: -200px;
-  width: 200px;
+  width: 250px;
   background-color: #fff;
   z-index: 2;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  padding: 30px;
+  padding: 10px;
   color: #2f2f2f;
   font-family: Montserrat, sans-serif;
   font-weight: 600;
   transition: .2s all ease-in-out;
+  right: ${(props: any) => props.isToggled ? '0px' : '-250px'}
 `;
 
-class Drawer extends React.Component {
-  state = { open: false };
+const CloseIcon = Icon.extend`
+  height: 30px;
+`;
 
-  toggleDrawer() {
-    const currentState = this.state.open;
-    this.setState({ open: !currentState })
-  }
+ const IconBar = styled.span`
+  width: 100%;
+  content: "";
+  border-radius: 2px;
+  height: 5px;
+  transform: rotate(45deg);
+  transition: all .2s ease-in-out;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-top: 10px;
 
-  render() {
-    return (
-      <SideDrawer>
-          Drawer
-      </SideDrawer>
-    );
+  :last-child {
+    transform: rotate(135deg);
   }
-}
+`;
+
+const Drawer: React.SFC<any> = (props: any) => {
+  const { drawerOpen, toggleDrawer } = props;
+  return (
+    <SideDrawer isToggled={drawerOpen}>
+      <IconContainer>
+        <CloseIcon onClick={event => toggleDrawer(event)}>
+          <IconBar />
+          <IconBar />
+        </CloseIcon>
+      </IconContainer>
+      <Navi>
+        <Link href="/new">New trivia</Link>
+        <Link href="/random">Random bit</Link>
+        <Link href="/about">Motivation</Link>
+        <Divider />
+        <Link href="https://github.com/juliusrajala/bit-of-trivia" target="_blank">Source</Link>
+      </Navi>
+    </SideDrawer>
+  );
+};
 
 export default Drawer;

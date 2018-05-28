@@ -12,11 +12,56 @@ export const Link = styled.a`
   padding: 10px;
   font-weight: 600;
   text-decoration: none;
-  color: #fff;
+  color: #2f2f2f;
   transition: all .2s ease-in-out;
   :hover {
     color: #2f2f2f;
   }
+`;
+
+export const IconBar = styled.span`
+  width: 100%;
+  content: "";
+  border-radius: 2px;
+  height: 5px;
+  margin: 2px 0;
+  transition: all .2s ease-in-out;
+`;
+
+export const Icon = styled.span`
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+
+  > * {
+    background-color: #2f2f2f;
+  }
+
+  :hover {
+    > * {
+      background-color: #fff;
+    }
+  }
+`;
+
+export const Divider = styled.span`
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0,0,0,0.12);
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1;
+  margin: 10px;
 `;
 
 export const CardTitle = Title.extend`
@@ -42,9 +87,7 @@ export const Bar = styled.div`
 export const Navi = styled.div`
   flex: 1;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
 `;
 
 export const BreadText = styled.p`
@@ -89,7 +132,7 @@ export const AlignRight = styled.div`
 `;
 
 export const Button = styled.button`
-  border: 2px solid #fff;
+  border: 3px solid #fff;
   border-radius: 2px;
   font-weight: 600;
   color: #fff;
@@ -99,4 +142,10 @@ export const Button = styled.button`
   display: inline-block;
   padding-top: 10px;
   padding-bottom: 10px;
+  cursor: pointer;
+
+  :hover {
+    color: #2f2f2f;
+    border-color: #2f2f2f;
+  }
 `;
