@@ -8,6 +8,7 @@ import {
   Icon,
   Divider
 } from 'src/ui/styles';
+import { ConfigContext } from 'src/core/ConfigProvider';
 
 const SideDrawer = styled.section`
   position: fixed;
@@ -48,23 +49,26 @@ const CloseIcon = Icon.extend`
 `;
 
 const Drawer: React.SFC<any> = (props: any) => {
-  const { drawerOpen, toggleDrawer } = props;
   return (
-    <SideDrawer isToggled={drawerOpen}>
-      <IconContainer>
-        <CloseIcon onClick={event => toggleDrawer(event)}>
-          <IconBar />
-          <IconBar />
-        </CloseIcon>
-      </IconContainer>
-      <Navi>
-        <Link href="/new">New trivia</Link>
-        <Link href="/random">Random bit</Link>
-        <Link href="/about">Motivation</Link>
-        <Divider />
-        <Link href="https://github.com/juliusrajala/bit-of-trivia" target="_blank">Source</Link>
-      </Navi>
-    </SideDrawer>
+    <ConfigContext.Consumer>
+      {(context) => (
+        <SideDrawer isToggled={context.drawerOpen}>
+          <IconContainer>
+            <CloseIcon onClick={event => context.toggleDrawer(event)}>
+              <IconBar />
+              <IconBar />
+            </CloseIcon>
+          </IconContainer>
+          <Navi>
+            <Link href="/new">New trivia</Link>
+            <Link href="/random">Random bit</Link>
+            <Link href="/about">Motivation</Link>
+            <Divider />
+            <Link href="https://github.com/juliusrajala/bit-of-trivia" target="_blank">Source</Link>
+          </Navi>
+        </SideDrawer>
+      ) }
+    </ConfigContext.Consumer>
   );
 };
 

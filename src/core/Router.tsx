@@ -38,7 +38,6 @@ class Router extends React.Component<any, RouterState> {
   }
 }
 
-
 function setUrl(state: RouterState, url: string) {
   return produce(state, draft => { draft.url = url });
 }
