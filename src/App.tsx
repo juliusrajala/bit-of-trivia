@@ -16,7 +16,7 @@ const ReactApp = () => {
   );
 }
 
-const App: React.SFC = props => (
+const App: React.SFC = () => (
   <ConfigProvider>
     <Header key="app-header" />
     <Drawer key="app-drawer" />
