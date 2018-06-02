@@ -7,7 +7,9 @@ import Header from 'src/ui/components/Header';
 import Footer from 'src/ui/components/Footer';
 import Drawer from 'src/ui/components/Drawer';
 import ConfigProvider, { ConfigContext } from 'src/core/ConfigProvider';
-import TriviaView from 'src/ui/views/TriviaView';
+import Trivia from 'src/ui/views/TriviaView';
+import About from 'src/ui/views/AboutView';
+import Create from 'src/ui/views/CreateView';
 
 const ReactApp = () => {
   return ReactDOM.render(
@@ -21,7 +23,9 @@ const App: React.SFC = () => (
     <Header />
     <Drawer />
     <Router>
-      <Route path="/" component={TriviaView} />
+      <Route path="/" component={Trivia} />
+      <Route path="/new" component={Create} />
+      <Route path="/about" component={About} />
     </Router>
     <Footer />
   </ConfigProvider>
