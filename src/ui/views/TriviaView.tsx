@@ -11,23 +11,22 @@ type TriviaParams = {
 
 interface TriviaProps {
   params?: TriviaParams;
-  loader: (string) => any;
+  loader?: (string) => any;
 }
 
 interface TriviaState {
   isLoading: boolean;
   isError: boolean;
-  triviaId: string;
+  triviaId?: string;
 }
 
 class TriviaView extends React.Component<TriviaProps, TriviaState> {
   constructor(props) {
-    const { id } = props.params;
     super(props);
     this.state = {
       isLoading: true,
       isError: false,
-      triviaId: id || 'random',
+      triviaId: 'random',
     }
   }
 

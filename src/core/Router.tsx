@@ -1,14 +1,20 @@
 import * as React from 'react';
+import * as regexp from 'path-to-regexp';
+import * as history from 'browser-history';
 import produce from 'immer';
-import history from 'browser-history';
 import { Container } from 'src/ui/styles';
 import { splitRouteParams } from 'src/utils/routes';
-import NotFound from 'src/ui/views/404View';
 
 type RouterState = { url: string; };
 const initialState = { url: '' };
 
-const Context = React.createContext({});
+type RouterContext = {
+  state: RouterState;
+  action: {
+    goTo: (string) => void;
+  }
+}
+const Context = React.createContext({state: {}, action: {}});
 const { Provider, Consumer } = Context;
 
 class Router extends React.Component<any, RouterState> {
@@ -31,12 +37,24 @@ class Router extends React.Component<any, RouterState> {
     const { state, action, props } = this;
 
     return (
-      <Provider value={{ state, action }}>
-        {props.children}
-      </Provider>
+      <Container>
+        <Provider value={{ state, action }}>
+          {props.children}
+        </Provider>
+      </Container>
     );
   }
 }
+
+export const Route = (props: any) => (
+  <Consumer>
+    {({state, action}: RouterContext) => {
+      console.log('RouteContext is', state);
+      const re = regexp(props.path)
+      if (re.test(state.url)) return <props.component { ...props } />;
+    }}
+  </Consumer>
+)
 
 function setUrl(state: RouterState, url: string) {
   return produce(state, draft => { draft.url = url });
