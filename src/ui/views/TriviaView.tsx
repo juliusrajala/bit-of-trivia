@@ -22,8 +22,8 @@ interface TriviaState {
 
 class TriviaView extends React.Component<TriviaProps, TriviaState> {
   constructor(props) {
-    super(props);
     const { id } = props.params;
+    super(props);
     this.state = {
       isLoading: true,
       isError: false,
@@ -34,6 +34,7 @@ class TriviaView extends React.Component<TriviaProps, TriviaState> {
   componentDidMount() {
     const { loader, params } = this.props;
     console.log(loader, this.props);
+    if (!loader) return;
     loader(params.id).then((data) => console.log(data.toJS()))
   }
 

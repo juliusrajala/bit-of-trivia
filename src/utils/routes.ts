@@ -1,6 +1,7 @@
 import produce from 'immer';
 
 export const splitRouteParams = searchString => {
+  if (!searchString || searchString.test(/\?/)) return {};
   return searchString
     .split('?')[1]
     .split('&')

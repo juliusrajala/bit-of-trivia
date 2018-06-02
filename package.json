@@ -7,7 +7,8 @@
     "dev": "npm run build-static && webpack-dev-server --mode development",
     "clean": "rm -rf dist",
     "build-static": "shx mkdir -p dist/ && cp -r public/* dist/",
-    "build": "webpack --mode production"
+    "serve": "npm run build && http-server ./dist -p 8000",
+    "build": "npm run build-static && webpack --mode production"
   },
   "keywords": [
     "trivia",
@@ -20,6 +21,7 @@
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5",
     "file-loader": "1.1.11",
+    "http-server": "^0.11.1",
     "shx": "^0.2.2",
     "ts-loader": "4.3.0",
     "typescript": "^2.8.3",
