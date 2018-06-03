@@ -5,8 +5,9 @@ import produce from 'immer';
 import { Container } from 'src/ui/styles';
 import { splitRouteParams } from 'src/utils/routes';
 
-type RouterState = { url: string; };
-const initialState = { url: '' };
+type RouterState = {
+  url: string;
+}
 
 type RouterContext = {
   state: RouterState;
@@ -14,8 +15,10 @@ type RouterContext = {
     goTo: (string) => void;
   }
 }
+
 const Context = React.createContext({state: {}, action: {}});
 const { Provider, Consumer } = Context;
+const initialState = { url: '' };
 
 class Router extends React.Component<any, RouterState> {
   state: RouterState = produce(
@@ -30,7 +33,9 @@ class Router extends React.Component<any, RouterState> {
   }
 
   componentDidMount() {
-    history((e, url) => this.setState(state => setUrl(state, url)));
+    history((e, url) => this.setState(
+      state => setUrl(state, url)
+    ))
   }
 
   render() {
@@ -54,7 +59,7 @@ export const Route = (props: any) => (
       if (re.test(state.url)) return <props.component { ...props } />;
     }}
   </Consumer>
-)
+);
 
 function setUrl(state: RouterState, url: string) {
   return produce(state, draft => { draft.url = url });
