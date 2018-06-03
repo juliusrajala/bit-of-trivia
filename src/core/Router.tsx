@@ -54,10 +54,12 @@ export const Route = (props: any) => (
     <Consumer>
       {({state, action}: RouterContext) => {
         console.log('RouteContext is', state);
-        const re = regexp(props.path)
+        let keys = [];
+        const re = regexp(props.path, keys)
+        console.log(re, keys);
         if (re.test(state.url)) return (
           <Container>
-            <props.component { ...props } />;
+            <props.component { ...props } />
           </Container>
         )
       }}

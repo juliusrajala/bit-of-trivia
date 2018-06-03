@@ -61,7 +61,7 @@ const Drawer: React.SFC<any> = () => (
         </IconContainer>
         <Navi>
           <AppLink path="/new">New trivia</AppLink>
-          <AppLink path="/random">Random bit</AppLink>
+          <AppLink path="/trivia/1232">Random bit</AppLink>
           <AppLink path="/about">Motivation</AppLink>
           <Divider />
           <StyledLink href="https://github.com/juliusrajala/bit-of-trivia" target="_blank">Source</StyledLink>

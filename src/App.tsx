@@ -24,6 +24,7 @@ const App: React.SFC = () => (
       <Header />
       <Drawer />
       <Route path="/" component={Trivia} />
+      <Route path="/trivia/:id" component={Trivia} />
       <Route path="/new" component={Create} />
       <Route path="/about" component={About} />
     </Router>

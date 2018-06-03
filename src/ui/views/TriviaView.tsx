@@ -1,51 +1,30 @@
 import * as React from 'react';
-import { Container, Card, CardTitle, BreadText } from 'src/ui/styles';
 import styled from 'styled-components';
+import { Container, Card, CardTitle, BreadText } from 'src/ui/styles';
+import TriviaProvider from 'src/core/TriviaProvider';
 
 const TEMP_TRIVIA = 'Giraffes and humans have the same amount of vertebrae. Both species have seven!';
 
-type TriviaParams = {
-  id?: string;
-  author?: string;
-}
+const TriviaView = (props) => {
+  const { id } = props;
+  return (
+    <TriviaProvider>
+      {(context) => {
+        const { state, actions } = context;
+        if (!state.fetched.includes(id)) {
+          actions.fetchTrivia(id);
+          return <span>Loading</span>;
+        }
 
-interface TriviaProps {
-  params?: TriviaParams;
-  loader?: (string) => any;
-}
-
-interface TriviaState {
-  isLoading: boolean;
-  isError: boolean;
-  triviaId?: string;
-}
-
-class TriviaView extends React.Component<TriviaProps, TriviaState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      isError: false,
-      triviaId: 'random',
-    }
-  }
-
-  componentDidMount() {
-    const { loader, params } = this.props;
-    console.log(loader, this.props);
-    if (!loader) return;
-    loader(params.id).then((data) => console.log(data.toJS()))
-  }
-
-  render() {
-
-    return (
-      <Card>
-        <CardTitle>Did you know?</CardTitle>
-        <BreadText>{TEMP_TRIVIA}</BreadText>
-      </Card>
-    );
-  }
+        return (
+          <Card>
+            <CardTitle>Did you know?</CardTitle>
+            <BreadText>{TEMP_TRIVIA}</BreadText>
+          </Card>
+        );
+      }}
+    </TriviaProvider>
+  )
 }
 
 export default TriviaView;
