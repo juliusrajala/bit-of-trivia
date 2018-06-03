@@ -3,7 +3,6 @@ import * as regexp from 'path-to-regexp';
 import * as history from 'browser-history';
 import produce from 'immer';
 import { Container } from 'src/ui/styles';
-import { splitRouteParams } from 'src/utils/routes';
 
 type RouterState = {
   url: string;
