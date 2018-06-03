@@ -2,17 +2,19 @@ import * as React from 'react';
 import * as regexp from 'path-to-regexp';
 import * as history from 'browser-history';
 import produce from 'immer';
-import { Container } from 'src/ui/styles';
+import { Container, StyledLink } from 'src/ui/styles';
 
 type RouterState = {
   url: string;
 }
 
+type RouterActions = {
+  goTo: (string) => void;
+}
+
 type RouterContext = {
   state: RouterState;
-  action: {
-    goTo: (string) => void;
-  }
+  action: RouterActions;
 }
 
 const Context = React.createContext({state: {}, action: {}});
@@ -38,27 +40,45 @@ class Router extends React.Component<any, RouterState> {
   }
 
   render() {
-    const { state, action, props } = this;
-
+    const { props } = this;
+    console.log('action', this.action);
     return (
-      <Container>
-        <Provider value={{ state, action }}>
-          {props.children}
-        </Provider>
-      </Container>
+      <Provider value={{ state: this.state, action: this.action }}>
+        {props.children}
+      </Provider>
     );
   }
 }
 
 export const Route = (props: any) => (
-  <Consumer>
-    {({state, action}: RouterContext) => {
-      console.log('RouteContext is', state);
-      const re = regexp(props.path)
-      if (re.test(state.url)) return <props.component { ...props } />;
-    }}
-  </Consumer>
+    <Consumer>
+      {({state, action}: RouterContext) => {
+        console.log('RouteContext is', state);
+        const re = regexp(props.path)
+        if (re.test(state.url)) return (
+          <Container>
+            <props.component { ...props } />;
+          </Container>
+        )
+      }}
+    </Consumer>
 );
+
+export const AppLink = (props: any) => {
+  const { path, children, ...rest } = props;
+  return (
+    <Consumer>
+      {({state, action}: RouterContext) => (
+        <StyledLink { ...rest } onClick={() => {
+          console.log(state, action);
+          return action.goTo(path);
+        }}>
+          {children}
+        </StyledLink>
+      )}
+    </Consumer>
+  )
+}
 
 function setUrl(state: RouterState, url: string) {
   return produce(state, draft => { draft.url = url });

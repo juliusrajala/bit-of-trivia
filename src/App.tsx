@@ -20,9 +20,9 @@ const ReactApp = () => {
 
 const App: React.SFC = () => (
   <ConfigProvider>
-    <Header />
-    <Drawer />
     <Router>
+      <Header />
+      <Drawer />
       <Route path="/" component={Trivia} />
       <Route path="/new" component={Create} />
       <Route path="/about" component={About} />

@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import {
   Button,
   Navi,
-  Link,
   IconContainer,
   Icon,
-  Divider
+  Divider,
+  StyledLink
 } from 'src/ui/styles';
 import { ConfigContext } from 'src/core/ConfigProvider';
+import { AppLink } from 'src/core/Router';
 
 const SideDrawer = styled.section`
   position: fixed;
@@ -48,28 +49,26 @@ const CloseIcon = Icon.extend`
   }
 `;
 
-const Drawer: React.SFC<any> = (props: any) => {
-  return (
-    <ConfigContext.Consumer>
-      {(context) => (
-        <SideDrawer isToggled={context.drawerOpen}>
-          <IconContainer>
-            <CloseIcon onClick={event => context.toggleDrawer(event)}>
-              <IconBar />
-              <IconBar />
-            </CloseIcon>
-          </IconContainer>
-          <Navi>
-            <Link href="/new">New trivia</Link>
-            <Link href="/random">Random bit</Link>
-            <Link href="/about">Motivation</Link>
-            <Divider />
-            <Link href="https://github.com/juliusrajala/bit-of-trivia" target="_blank">Source</Link>
-          </Navi>
-        </SideDrawer>
-      ) }
-    </ConfigContext.Consumer>
-  );
-};
+const Drawer: React.SFC<any> = () => (
+  <ConfigContext.Consumer>
+    {(context) => (
+      <SideDrawer isToggled={context.drawerOpen}>
+        <IconContainer>
+          <CloseIcon onClick={event => context.toggleDrawer(event)}>
+            <IconBar />
+            <IconBar />
+          </CloseIcon>
+        </IconContainer>
+        <Navi>
+          <AppLink path="/new">New trivia</AppLink>
+          <AppLink path="/random">Random bit</AppLink>
+          <AppLink path="/about">Motivation</AppLink>
+          <Divider />
+          <StyledLink href="https://github.com/juliusrajala/bit-of-trivia" target="_blank">Source</StyledLink>
+        </Navi>
+      </SideDrawer>
+    ) }
+  </ConfigContext.Consumer>
+);
 
 export default Drawer;

@@ -8,12 +8,13 @@ export const Title = styled.h1`
   font-family: Montserrat, sans-serif;
 `;
 
-export const Link = styled.a`
+export const StyledLink = styled.a`
   padding: 10px;
   font-weight: 600;
   text-decoration: none;
   color: #2f2f2f;
   transition: all .2s ease-in-out;
+  cursor: Pointer;
   :hover {
     color: rgba(0,0,0,0.48);
   }
